@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Dongle:wght@300;400;700&family=Kalam:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800&family=Ubuntu:wght@300;400;500;700&family=Varela+Round&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  height: 100vh;
+  font-family: "Dongle", "Kalam", "Comic Neue", Helvetica, sans-serif, Arial;
+  background-image: url("./pexels-digital-buggu-296498.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+p {
+  margin: 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#heading {
+  font-family: "Kalam";
+  font-size: 5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.jumbotron {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  min-width: 600px;
+  padding: 2rem;
+  display: grid;
+  grid-template-areas: "input input" "place place" "temp desc";
+  grid-column-gap: 1rem;
+}
+
+.city_input {
+  grid-area: input;
+  text-align: center;
+}
+
+#city {
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid black;
+  padding: 0.5rem;
+  outline: 0px;
+}
+
+#submit {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.place {
+  grid-area: place;
+  margin-top: 1rem;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+.temp {
+  grid-area: temp;
+  font-size: 5rem;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.temp img {
+  width: 100px;
+  height: 100px;
+}
+
+.weather {
+  grid-area: desc;
+}
+
+.weather ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 2rem;
+  line-height: 1.2em;
+  text-align: right;
+}
+
+#credit {
+  font-family: "Comic Neue";
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: white;
+}
+
+@media (max-width: 648px) {
+  #heading {
+    font-size: 3rem;
+  }
+
+  .jumbotron {
+    min-width: 80%;
+    padding: 1rem;
+    grid-template-areas: "place" "temp" "desc" "input";
+  }
+
+  .place {
+    text-align: center;
+  }
+
+  .temp {
+    justify-content: left;
+  }
+
+  .weather ul {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
