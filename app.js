@@ -1,6 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const axios = require("axios").default;
+var key = config.SECRET_API_KEY;
 
 const app = express();
 app.set("view engine", "ejs");
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
     params: { q: "New Delhi", lang: "en", units: "metric" },
     headers: {
       "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": "0188c43979msh2e9a8d8e9d2ebe9p142e88jsn8b181cebbf95",
+      "x-rapidapi-key": key,
     },
   };
 
@@ -51,7 +52,7 @@ app.get("/city", (req, res) => {
     params: { q: `${req.query.city}`, lang: "en", units: "metric" },
     headers: {
       "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": "0188c43979msh2e9a8d8e9d2ebe9p142e88jsn8b181cebbf95",
+      "x-rapidapi-key": key,
     },
   };
 

@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Weather App</title>
-  </head>
-  <body>
-    <div class="overlay">
-      <p id="heading">Weather App</p>
-      <section class="jumbotron">
-        <div class="city_input">
-          <form action="/city" method="GET">
-            <input type="text" name="city" placeholder="Enter City" id="city" />
-            <input type="submit" id="submit" />
-          </form>
-        </div>
-        <div class="place">
-          <p id="name"><%= place %></p>
-        </div>
-        <div class="temp">
-          <img src="<%= icon %>" alt="<%= desc %>" />
-          <p id="temp"><%= temperature %>&#x2103</p>
-        </div>
-        <div class="weather">
-          <ul>
-            <li id="desc"><%= desc %></li>
-            <li id="maxmin"><%= max %>&#x2103 / <%= min %>&#x2103</li>
-            <li id="feels">Feels like <%= feels %></li>
-          </ul>
-        </div>
-      </section>
-      <p id="credit">Created by <strong>Harshit Lakshakar</strong><br>Email : hlakshakar@gmail.com</p>
-    </div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Weather App</title>
+</head>
+
+<body>
+  <div class="overlay">
+    <p id="heading">Weather App</p>
+    <section class="jumbotron">
+      <div class="city_input">
+        <form action="/city" method="GET">
+          <input type="text" name="city" placeholder="Enter City" id="city" />
+          <input type="submit" id="submit" />
+        </form>
+      </div>
+      <div class="place">
+        <p id="name">
+          <%= place %>
+        </p>
+      </div>
+      <div class="temp">
+        <img src="<%= icon %>" alt="<%= desc %>" />
+        <p id="temp">
+          <%= temperature %>&#x2103
+        </p>
+      </div>
+      <div class="weather">
+        <ul>
+          <li id="desc">
+            <%= desc %>
+          </li>
+          <li id="maxmin">
+            <%= max %>&#x2103 / <%= min %>&#x2103
+          </li>
+          <li id="feels">Feels like <%= feels %>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <p id="credit">Created by <strong>Harshit Lakshakar</strong><br>Email : hlakshakar@gmail.com</p>
+  </div>
+  <script type='text/javascript' src='config.js'></script>
+</body>
+
 </html>
