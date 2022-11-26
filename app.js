@@ -1,7 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
 const axios = require("axios").default;
-var key = config.SECRET_API_KEY;
 
 const app = express();
 app.set("view engine", "ejs");
@@ -12,12 +11,7 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   let options = {
     method: "GET",
-    url: "https://community-open-weather-map.p.rapidapi.com/weather",
-    params: { q: "New Delhi", lang: "en", units: "metric" },
-    headers: {
-      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": key,
-    },
+    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.query.city}/today??unitGroup=metric&elements=datetime%2Cname%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=current&key=6XFHQ5ZH7V4UESP7XN46CXB9Y&contentType=json`,
   };
 
   axios
@@ -25,17 +19,17 @@ app.get("/", (req, res) => {
     .then(function (response) {
       wobj = response.data;
 
-      let main = wobj.main;
-      let desc = wobj.weather;
+      let current = wobj.currentConditions;
+      let day = wobj.days;
 
       res.render("index", {
-        place: wobj.name,
-        temperature: main.temp,
+        place: wobj.address,
+        temperature: current.temp,
         icon: `http://openweathermap.org/img/wn/${desc[0].icon}@2x.png`,
-        desc: desc[0].main,
-        max: main.temp_max,
-        min: main.temp_min,
-        feels: main.feels_like,
+        desc: current.conditions,
+        max: day.tempmax,
+        min: day.tempmin,
+        feels: current.feelslike,
       });
     })
     .catch(function (error) {
@@ -48,12 +42,7 @@ let wobj = {};
 app.get("/city", (req, res) => {
   let options = {
     method: "GET",
-    url: "https://community-open-weather-map.p.rapidapi.com/weather",
-    params: { q: `${req.query.city}`, lang: "en", units: "metric" },
-    headers: {
-      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": key,
-    },
+    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.query.city}/today??unitGroup=metric&elements=datetime%2Cname%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=current&key=6XFHQ5ZH7V4UESP7XN46CXB9Y&contentType=json`,
   };
 
   axios
@@ -61,17 +50,17 @@ app.get("/city", (req, res) => {
     .then(function (response) {
       wobj = response.data;
 
-      let main = wobj.main;
-      let desc = wobj.weather;
+      let current = wobj.currentConditions;
+      let day = wobj.days;
 
       res.render("index", {
-        place: wobj.name,
-        temperature: main.temp,
+        place: wobj.address,
+        temperature: current.temp,
         icon: `http://openweathermap.org/img/wn/${desc[0].icon}@2x.png`,
-        desc: desc[0].main,
-        max: main.temp_max,
-        min: main.temp_min,
-        feels: main.feels_like,
+        desc: current.conditions,
+        max: day.tempmax,
+        min: day.tempmin,
+        feels: current.feelslike,
       });
     })
     .catch(function (error) {
