@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "axios": "^0.25.0",
+    "build": "^0.1.4",
     "ejs": "^3.1.6",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "vercel": "^28.5.6"
   }
 }
