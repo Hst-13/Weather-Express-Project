@@ -14,27 +14,27 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   let options = {
     method: "GET",
-    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/New%20Delhi?unitGroup=metric&elements=name%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=fcst%2Ccurrent&key=${API_KEY}&contentType=json`,
+    url: `https://api.openweathermap.org/data/2.5/weather?q=New%20Delhi&APPID=${API_KEY}&units=metric&lang=en`,
   };
-
-  console.log(options);
 
   axios
     .request(options)
     .then(function (response) {
       wobj = response.data;
 
-      let current = wobj.currentConditions;
-      let day = wobj.days;
+      console.log(wobj);
+
+      let main = wobj.main;
+      let desc = wobj.weather[0];
 
       res.render("index", {
-        place: wobj.address,
-        temperature: current.temp,
-        icon: `http://openweathermap.org/img/wn/${current.icon}@2x.png`,
-        desc: current.conditions,
-        max: day.tempmax,
-        min: day.tempmin,
-        feels: current.feelslike,
+        place: wobj.name,
+        temperature: main.temp,
+        icon: `http://openweathermap.org/img/wn/${desc.icon}@2x.png`,
+        desc: desc.main,
+        max: main.temp_max,
+        min: main.temp_min,
+        feels: main.feels_like,
       });
     })
     .catch(function (error) {
@@ -47,27 +47,27 @@ let wobj = {};
 app.get("/city", (req, res) => {
   let options = {
     method: "GET",
-    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.query.city}?unitGroup=metric&elements=name%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=fcst%2Ccurrent&key=${API_KEY}&contentType=json`,
+    url: `https://api.openweathermap.org/data/2.5/weather?q=${req.query.city}&APPID=${API_KEY}&units=metric&lang=en`,
   };
-
-  console.log(options);
 
   axios
     .request(options)
     .then(function (response) {
       wobj = response.data;
 
-      let current = wobj.currentConditions;
-      let day = wobj.days;
+      console.log(wobj);
+
+      let main = wobj.main;
+      let desc = wobj.weather[0];
 
       res.render("index", {
-        place: wobj.address,
-        temperature: current.temp,
-        icon: `http://openweathermap.org/img/wn/${current.icon}@2x.png`,
-        desc: current.conditions,
-        max: day.tempmax,
-        min: day.tempmin,
-        feels: current.feelslike,
+        place: wobj.name,
+        temperature: main.temp,
+        icon: `http://openweathermap.org/img/wn/${desc.icon}@2x.png`,
+        desc: desc.main,
+        max: main.temp_max,
+        min: main.temp_min,
+        feels: main.feels_like,
       });
     })
     .catch(function (error) {
