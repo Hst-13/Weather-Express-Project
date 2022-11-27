@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "axios": "^0.25.0",
     "dotenv": "^16.0.3",
