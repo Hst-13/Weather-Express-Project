@@ -14,8 +14,10 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   let options = {
     method: "GET",
-    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.query.city}/today??unitGroup=metric&elements=datetime%2Cname%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=current&key=${API_KEY}&contentType=json`,
+    url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/New%20Delhi?/today??unitGroup=metric&elements=datetime%2Cname%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=current&key=${API_KEY}&contentType=json`,
   };
+
+  console.log(options);
 
   axios
     .request(options)
@@ -47,6 +49,8 @@ app.get("/city", (req, res) => {
     method: "GET",
     url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.query.city}/today??unitGroup=metric&elements=datetime%2Cname%2Caddress%2Ctempmax%2Ctempmin%2Ctemp%2Cfeelslike%2Cconditions%2Cicon&include=current&key=${API_KEY}&contentType=json`,
   };
+
+  console.log(options);
 
   axios
     .request(options)
